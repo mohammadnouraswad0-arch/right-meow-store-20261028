@@ -75,21 +75,27 @@ export function Header() {
 
       {/* Mobile menu */}
       <div
-        className={`fixed inset-0 z-50 bg-dark-brown/40 transition-opacity lg:hidden ${menuOpen ? "opacity-100" : "pointer-events-none opacity-0"}`}
+        aria-hidden="true"
+        className={`fixed inset-0 z-[60] bg-dark-brown/45 transition-opacity lg:hidden ${menuOpen ? "opacity-100" : "pointer-events-none opacity-0"}`}
         onClick={() => setMenuOpen(false)}
       />
       <div
-        className={`fixed inset-y-0 right-0 z-50 w-full max-w-xs bg-[var(--color-white)] p-5 shadow-2xl transition-transform duration-300 lg:hidden ${
+        role="dialog"
+        aria-modal="true"
+        aria-label="قائمة التنقل"
+        onClick={(event) => event.stopPropagation()}
+        style={{ backgroundColor: "var(--color-white)", opacity: 1 }}
+        className={`fixed inset-y-0 right-0 z-[70] flex w-[min(86vw,24rem)] flex-col overflow-y-auto border-l border-dark-brown/10 p-5 shadow-2xl transition-transform duration-300 lg:hidden ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-6 flex shrink-0 items-center justify-between">
           <LogoLockup />
           <button aria-label="إغلاق القائمة" onClick={() => setMenuOpen(false)}>
             <X size={24} />
           </button>
         </div>
-        <nav className="flex flex-col gap-1">
+        <nav className="flex shrink-0 flex-col gap-1">
           {navLinks.map((link) => (
             <Link
               key={link.href}
