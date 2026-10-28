@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #8f4d50;
+  --color-primary-dark: #713c3f;
+  --color-dark-brown: #3b211d;
+  --color-cream: #f7efe5;
+  --color-sage: #a8b5a0;
+  --color-white: #fffcf8;
+  --color-rose: #c17f78;
+
+  --font-arabic: "Cairo", "Tajawal", sans-serif;
+
+  --radius-card: 18px;
+  --radius-button: 10px;
+  --shadow-card: 0 8px 28px rgba(59, 33, 29, 0.07);
+  --shadow-hover: 0 14px 36px rgba(59, 33, 29, 0.14);
+  --transition-base: 220ms ease;
+}
+
+@theme inline {
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-dark-brown: var(--color-dark-brown);
+  --color-cream: var(--color-cream);
+  --color-sage: var(--color-sage);
+  --color-brand-white: var(--color-white);
+  --color-rose: var(--color-rose);
+  --font-sans: var(--font-arabic);
+}
+
+* {
+  border-color: var(--color-dark-brown);
+  border-color: color-mix(in srgb, var(--color-dark-brown) 12%, transparent);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-dark-brown);
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* Hide scrollbar for drag/scroll carousels but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.snap-x-mandatory {
+  scroll-snap-type: x mandatory;
+}
+.snap-start {
+  scroll-snap-align: start;
+}
+
+/* Decorative floating animation for hero elements */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(3deg); }
+}
+@keyframes float-slower {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(-4deg); }
+}
+.animate-float {
+  animation: float-slow 6s ease-in-out infinite;
+}
+.animate-float-slower {
+  animation: float-slower 8s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+}
+.reveal.in-view {
+  animation: fade-in-up 0.7s ease forwards;
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-pop {
+  animation: pop-in 0.35s ease;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(143, 77, 80, 0.35); }
+  70% { box-shadow: 0 0 0 10px rgba(143, 77, 80, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(143, 77, 80, 0); }
+}
+.animate-pulse-ring {
+  animation: pulse-ring 2.2s ease-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.animate-bob {
+  animation: bob 3.2s ease-in-out infinite;
+}
